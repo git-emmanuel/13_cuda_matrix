@@ -11,13 +11,25 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 git clone git@github.com:git-emmanuel/13_cuda_matrix.git .
 
 
+# Installation steps
 
+01 - Create a test conda environment
+*Assuming conda or miniconda is installed*
+```bash
+conda create blabla
+```
 
+02 - 
 
+```bash
+pip install requirements.txt
+```
 
+03 -
 
-
-
+```bash
+python -c "..."
+```
 
 
 
