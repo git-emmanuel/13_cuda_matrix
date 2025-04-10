@@ -117,9 +117,41 @@ def mul_inside_njit_prange(result, mat1, mat2, nrows_mat1, ncols_mat2, ncols_mat
 
 
 
-def print_hello():
-    print("hello")
-    return "bye"
+@cuda.jit
+def mult_matrices_cuda(mat1, mat2, result):
+    row, col = cuda.grid(2)
+    if row < mat1.shape[0] and col < mat2.shape[1]:
+        temp = 0
+        for k in range(mat1.shape[1]):
+            temp += mat1[row, k] * mat2[k, col]
+        result[row, col] = temp
+
+def mult_matrices_cuda_wrapper(mat1, mat2):
+    n, m = mat1.shape
+    m2, p = mat2.shape
+
+    result = np.zeros((n, p), dtype=np.float64)
+
+    mat1_device = cuda.to_device(mat1)
+    mat2_device = cuda.to_device(mat2)
+    result_device = cuda.to_device(result)
+
+    threads_per_block = (16, 16)
+    blocks_per_grid = (int(np.ceil(n / threads_per_block[0])), int(np.ceil(p / threads_per_block[1])))
+
+    mult_matrices_cuda[blocks_per_grid, threads_per_block](mat1_device, mat2_device, result_device)
+    result_device.copy_to_host(result)
+
+    return result
+
+
+#########################
+
+
+# def print_hello():
+#     print("hello")
+#     return "bye"
+
 
 if __name__ == "__main__":
 
@@ -159,6 +191,10 @@ if __name__ == "__main__":
     time_ = timeit.timeit( lambda: mul_njit(mat1, mat2, range='prange'), number=1)
     time_ = timeit.timeit( lambda: mul_njit(mat1, mat2, range='prange'), number=1)
     print( "it took", float(format(time_, '.2e')), "s")
+
+    print()
+    print( "Selma x cuda ...")
+    mult_matrices_cuda_wrapper(mat1, mat2)
 
 
 
