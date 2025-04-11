@@ -41,7 +41,6 @@ python matrix_lib.py
 
 04 - Debugging installation of cuda
 
-* Method Aurore/Deborah
 ```bash
 conda install -c conda-forge cuda-nvcc cuda-nvrtc "cuda-version>=12.0"
 conda install -c conda-forge cuda-python
@@ -56,44 +55,8 @@ sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-8
 sudo apt-get install -y cuda-drivers
 ```
+Après l'installation complète, redémarrer l'ordinateur
 
-Sur terminal - créer son env:
-```bash
-conda create -n Cult_Info python=3.12.3
-conda activate Cult_Info
-conda install -c conda-forge cuda-nvcc cuda-nvrtc "cuda-version>=12.0"
-conda install -c conda-forge cuda-python
-sudo apt-get install nvidia-cuda-toolkit
-conda install numpy time numba matplotlib scipy cupy
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
-sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.1-570.124.06-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu2404-12-8-local_12.8.1-570.124.06-1_amd64.deb
-sudo cp /var/cuda-repo-ubuntu2404-12-8-local/cuda-B2775641-keyring.gpg /usr/share/keyrings/
-sudo apt-get update sudo apt-get -y install cuda-toolkit-12-8
-sudo apt-get install -y cuda-drivers
-```
-Obs.: Après l'installation complète, redémarrer l'ordinateur
-
-
-
-* Method Selma
-https://developer.nvidia.com/cuda-downloads
-```bash
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
-sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.1-570.124.06-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu2404-12-8-local_12.8.1-570.124.06-1_amd64.deb
-sudo cp /var/cuda-repo-ubuntu2404-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
-sudo apt-get update
-sudo apt-get -y install cuda-toolkit-12-8
-
-sudo apt-get install -y cuda-drivers
-sudo apt-get install -y nvidia-open
-conda install -c conda-forge cuda-nvcc cuda-nvrtc "cuda-version>=12.0"
-conda install -c conda-forge cuda-python
-sudo apt-get install nvidia-cuda-toolkit
-```
 
 *This project is licensed under the terms of the MIT license.*
 
