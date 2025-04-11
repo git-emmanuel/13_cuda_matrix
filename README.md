@@ -14,12 +14,13 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 01 - Cloning the repository (exluding the project folder)
 ```bash
 mkdir cuda_matrix
+cd cuda_matrix
 git clone git@github.com:git-emmanuel/13_cuda_matrix.git .
 
 ```
 or if you are not logged in github:
 ```bash
-git clone https://github.com/git-emmanuel/13_cuda_matrix.git 
+git clone https://github.com/git-emmanuel/13_cuda_matrix.git cuda_matrix
 ```
 
 02 - Create a test conda environment and the necessary packages
@@ -42,12 +43,10 @@ python matrix_lib.py
 
 * Method Aurore/Deborah
 ```bash
-# conda create -n Cult_Info python=3.12.3
-# conda activate Cult_Info
 conda install -c conda-forge cuda-nvcc cuda-nvrtc "cuda-version>=12.0"
 conda install -c conda-forge cuda-python
 sudo apt-get install nvidia-cuda-toolkit
-# conda install numpy time numba matplotlib scipy
+conda install numpy time numba matplotlib scipy -y
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
 sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
 wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.1-570.124.06-1_amd64.deb
